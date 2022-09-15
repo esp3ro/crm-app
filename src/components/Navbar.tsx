@@ -5,12 +5,7 @@ import styles from '../common/styles/Navbar.module.scss'
 const Navbar = () => {
     return (
         <nav className={styles.nav}>
-            <div className={styles.links}>
-                <Link href="/"><a>Главная</a></Link>
-                <a>Студенты</a>
-                <a>Успеваемость</a>
-                <Link href="/login"><h4>Войти</h4></Link>
-            </div>
+                <Link href="/login"><button>Выйти</button></Link>
         </nav>
     )
 };
