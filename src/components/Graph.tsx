@@ -1,12 +1,12 @@
 import React from "react";
 import styles from '../common/styles/Graph.module.scss'
-import { Line } from  'react-chartjs-2'
+import { Bar } from  'react-chartjs-2'
 import {
     Chart as ChartJS,
     CategoryScale,
     LinearScale,
     PointElement,
-    LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend,
@@ -16,53 +16,50 @@ ChartJS.register(
     CategoryScale,
     LinearScale,
     PointElement,
-    LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend
 );
 
+export const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            position: 'top' as const,
+        },
+        title: {
+            display: true,
+            text: 'График оплаты',
+        },
+    },
+    scales: {
+        yAxes: [{
+            barPercentage: 0.5
+        }]
+    },
+    elements: {
+        rectangle: {
+            borderSkipped: 'left',
+        }
+    }
+};
 
-const data = {
-    labels: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ],
+
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July' , 'April', 'May', 'June'];
+
+export const data = {
+    labels,
     datasets: [
         {
-            label: "Sales/ month",
-            fill: true,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            borderCapStyle: "butt",
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: "miter",
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 0,
-            pointHoverRadius: 0,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 0,
-            pointRadius: 0,
-            pointHitRadius: 0,
-            data: [65, 59, 80, 81, 56, 55, 40, 57, 40, 48, 59, 62],
+            label: 'Студенты',
+            data: [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000],
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(99,115,255)',
         },
     ],
 };
-
 
 const Graph = () => {
     return (
@@ -70,9 +67,7 @@ const Graph = () => {
             <div>
                 <h3>График</h3>
                 <div className={styles.graph}>
-                    <div className={styles.bar}>
-                        <Line data={data} width={400} height={400} />
-                    </div>
+                        <Bar options={options} data={data} width={400} height={500} />
                 </div>
             </div>
         </div>
